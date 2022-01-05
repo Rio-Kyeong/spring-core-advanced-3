@@ -12,13 +12,13 @@ import org.aspectj.lang.annotation.*;
 @Aspect
 public class AspectV6Advice {
 
-    /**
+   /* *//**
      * 메서드의 실행의 주변에서 실행된다. 메서드 실행 전후에 작업을 수행
      * 항상 타겟을 호출해야 한다 (joinPoint.proceed())
      * @param joinPoint
      * @return
      * @throws Throwable
-     */
+     *//*
     @Around("hello.aop.order.aop.Pointcuts.orderAndService()")
     public Object doTransaction(ProceedingJoinPoint joinPoint) throws Throwable{
 
@@ -37,8 +37,7 @@ public class AspectV6Advice {
             //@After
             log.info("[리소스 릴리즈] {}", joinPoint.getSignature());
         }
-    }
-
+    }*/
 
     /**
      * 조인 포인트 실행 전
@@ -58,7 +57,10 @@ public class AspectV6Advice {
      * @param joinPoint
      * @param result
      */
-    @AfterReturning(value = "hello.aop.order.aop.Pointcuts.orderAndService()", returning = "result")
+    @AfterReturning(
+            value = "hello.aop.order.aop.Pointcuts.orderAndService()",
+            returning = "result"
+            )
     public void doReturn(JoinPoint joinPoint, Object result){
         log.info("[return] {} return={}", joinPoint.getSignature(), result);
     }
@@ -69,7 +71,10 @@ public class AspectV6Advice {
      * @param joinPoint
      * @param ex
      */
-    @AfterThrowing(value = "hello.aop.order.aop.Pointcuts.orderAndService()", throwing = "ex")
+    @AfterThrowing(
+            value = "hello.aop.order.aop.Pointcuts.orderAndService()",
+            throwing = "ex"
+            )
     public void doThrowing(JoinPoint joinPoint, Exception ex){
         log.info("[ex] {} message={}", joinPoint.getSignature(), ex.getMessage());
     }
